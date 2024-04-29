@@ -9,8 +9,6 @@
 
 using namespace std;
 
-set<string> gen_unique_patterns(string virus_pattern);
-
 int main()
 {
     string input_path, output_path;
@@ -65,16 +63,4 @@ int main()
     cout << "KMP search time: " << chrono::duration_cast<chrono::milliseconds>(end - start).count() << "ms" << endl;
 
     saveToCSVwithResult(results, output_path);
-}
-
-set<string> gen_unique_patterns(string virus_dna)
-{
-    set<string> patterns;
-    patterns.insert(virus_dna);
-    int n = virus_dna.length();
-    for(int i = 1; i < n; i++)
-    {
-        patterns.insert(virus_dna.substr(i) + virus_dna.substr(0, i));
-    }
-    return patterns;
 }

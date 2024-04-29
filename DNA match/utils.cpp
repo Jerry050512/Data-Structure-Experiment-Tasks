@@ -3,6 +3,9 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <functional>
+#include <chrono>
+#include <set>
 
 using namespace std;
 
@@ -61,6 +64,44 @@ void saveToCSVwithResult(vector<pair<bool, DNAPair>> data, const string &filenam
     }
     file.close();
     cout << "Wrote " << data.size() << " pairs to " << filename << endl;
+}
+
+set<string> gen_unique_patterns(string virus_dna)
+{
+    set<string> patterns;
+    patterns.insert(virus_dna);
+    int n = virus_dna.length();
+    for (int i = 1; i < n; i++)
+    {
+        patterns.insert(virus_dna.substr(i) + virus_dna.substr(0, i));
+    }
+    return patterns;
+}
+
+using SearchFunction = function<bool(const string &, const string &)>;
+
+long long test_search_function(const vector<DNAPair> &data, SearchFunction search_func)
+{
+    vector<pair<bool, DNAPair>> results;
+    auto start = chrono::high_resolution_clock::now();
+
+    for (const auto &p : data)
+    {
+        pair<bool, DNAPair> result{false, p};
+        auto match_patterns = gen_unique_patterns(p.virus);
+        for (const auto &pattern : match_patterns)
+        {
+            if (search_func(p.human, pattern))
+            {
+                result.first = true;
+                break;
+            }
+        }
+        results.push_back(result);
+    }
+
+    auto end = chrono::high_resolution_clock::now();
+    return chrono::duration_cast<chrono::milliseconds>(end - start).count();
 }
 
 // int main()

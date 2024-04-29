@@ -14,18 +14,20 @@ def generate_human_dna(virus, min_length=20, max_length=500):
             return human_dna
 
 def main():
-    # Write to CSV file
-    rows = random.randint(50, 100)
-    with open("test_data/input.csv", "w", newline="") as csvfile:
-        writer = csv.writer(csvfile)
-        writer.writerow(["virus", "human"])
-        for i in range(rows):
-            virus_sequence = generate_random_dna(random.randint(3, 40))
-            human_sequence = generate_human_dna(virus_sequence, 1000, 10000)
-            writer.writerow([virus_sequence, human_sequence])
-
-
-    print("Data written to dna_sequences.csv")
+    files = []
+    for i in range(1, 99):
+        # Write to CSV file
+        rows = 50
+        file_name = f"test_data/input{i:02d}.csv"
+        with open(file_name, "w", newline="") as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(["virus", "human"])
+            for j in range(rows):
+                virus_sequence = generate_random_dna(random.randint(5, 30))
+                human_sequence = generate_human_dna(virus_sequence, 10 * i ** 2, 10 * i ** 3)
+                writer.writerow([virus_sequence, human_sequence])
+        files.append(file_name)
+    print(file_name)
 
 if __name__ == "__main__":
     main()
