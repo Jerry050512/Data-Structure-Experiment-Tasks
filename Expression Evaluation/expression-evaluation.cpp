@@ -83,8 +83,8 @@ double evaluate_expression(string expression)
             // Evaluate the sub-expression inside the parentheses
             while (!ops.isEmpty() && ops.top() != '(')
             {
-                int b = values.pop();
-                int a = values.pop();
+                double b = values.pop();
+                double a = values.pop();
                 char op = ops.pop();
                 values.push(apply_operation(a, b, op));
             }
@@ -125,7 +125,7 @@ int main()
 {
     string expression;
     cout << "Enter multiline expression endswith '=' unknown operator will be skip: \n";
-    while(expression != string("="))
+    while(true)
     {
         getline(cin, expression);
         if(expression == string("="))
