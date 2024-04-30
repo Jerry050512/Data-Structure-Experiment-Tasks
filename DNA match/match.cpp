@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <chrono>
 
 using namespace std;
 
@@ -61,10 +62,21 @@ vector<int> compute_lps(const string &pattern)
 // KMP search algorithm
 bool kmp_search(const string &text, const string &pattern)
 {
+    #ifdef DEBUG
+    auto start = chrono::high_resolution_clock::now();
+    #endif
     vector<int> lps = compute_lps(pattern);
+    #ifdef DEBUG
+    auto end = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
+    cout << "LPS computation time: " << duration.count() << " microseconds" << endl;
+    #endif
 
     int i = 0; // index for text[]
     int j = 0; // index for pattern[]
+    #ifdef DEBUG
+    start = chrono::high_resolution_clock::now();
+    #endif
     while (i < text.length())
     {
         if (pattern[j] == text[i])
@@ -76,8 +88,13 @@ bool kmp_search(const string &text, const string &pattern)
         if (j == pattern.length())
         {
             // pattern found at index i - j
+            #ifdef DEBUG
+            end = chrono::high_resolution_clock::now();
+            auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
+            cout << "Time taken by function: " << duration.count() << " microseconds" << endl;
+            #endif
             return true;
-            j = lps[j - 1];
+            // j = lps[j - 1];
         }
         else if (i < text.length() && pattern[j] != text[i])
         {
@@ -88,6 +105,11 @@ bool kmp_search(const string &text, const string &pattern)
                 i++;
         }
     }
+    #ifdef DEBUG
+    end = chrono::high_resolution_clock::now();
+    duration = chrono::duration_cast<chrono::microseconds>(end - start);
+    cout << "Time taken by function: " << duration.count() << " microseconds" << endl;
+    #endif
 
     return false;
 }

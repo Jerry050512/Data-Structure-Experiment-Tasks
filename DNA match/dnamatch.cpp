@@ -4,6 +4,8 @@
 #include <chrono>
 #include <set>
 
+#define DEBUG 1
+
 #include "utils.cpp"
 #include "match.cpp"
 
@@ -11,6 +13,9 @@ using namespace std;
 
 int main()
 {
+    #ifdef DEBUG
+    cout << "DEBUG MODE" << endl;
+    #endif
     string input_path, output_path;
     cout << "Enter input file path (enter to use default value): ";
     getline(cin, input_path);

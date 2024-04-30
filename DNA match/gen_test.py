@@ -10,12 +10,12 @@ def generate_random_dna(length):
 def generate_human_dna(virus, min_length=20, max_length=500):
     while True:
         human_dna = generate_random_dna(random.randint(min_length, max_length))
-        if virus in human_dna or random.random() < 0.5:
+        if virus not in human_dna:
             return human_dna
 
 def main():
     files = []
-    for i in range(1, 99):
+    for i in range(1, 21):
         # Write to CSV file
         rows = 50
         file_name = f"test_data/input{i:02d}.csv"
@@ -23,8 +23,8 @@ def main():
             writer = csv.writer(csvfile)
             writer.writerow(["virus", "human"])
             for j in range(rows):
-                virus_sequence = generate_random_dna(random.randint(5, 30))
-                human_sequence = generate_human_dna(virus_sequence, 10 * i ** 2, 10 * i ** 3)
+                virus_sequence = generate_random_dna(20) * random.randint(5, 10)
+                human_sequence = generate_human_dna(virus_sequence, 2000, 4000)
                 writer.writerow([virus_sequence, human_sequence])
         files.append(file_name)
     print(file_name)
