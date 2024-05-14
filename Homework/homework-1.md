@@ -308,19 +308,19 @@ p.s. 如果利用原地更新则空间复杂度可以变为O(1)
 
 构造Huffman树：
 
-![Huffman Tree](https://i.postimg.cc/3NbBsgrS/H.png)
+![Huffman Tree](https://i.postimg.cc/dtr3qHH8/Huffman-Tree.jpg)
 
 从而构造出Huffman编码：
 | 字符 | 编码 |
 | --- | --- |
-| e | 0 |
-| g | 10 |
-| b | 110 |
-| h | 1111 |
-| a | 11100 |
-| d | 111111 |
-| c | 1111101 |
-| f | 1111110 |
+| b | 00 |
+| g | 01 |
+| e | 11 |
+| d | 1001 |
+| a | 1010 |
+| h | 1011 |
+| c | 10000 |
+| f | 10001 |
 
 ### 2. 等长编码
 
@@ -358,7 +358,7 @@ p.s. 如果利用原地更新则空间复杂度可以变为O(1)
 
 ## 10 写出Huffman树
 
-![Huffman-Tree](https://i.postimg.cc/0NJV67TR/Huffman-Tree.png)
+![Huffman-Tree](https://i.postimg.cc/66DTxJ0W/Huffman-Tree.jpg)
 
 ## 11 前缀特性编码
 
