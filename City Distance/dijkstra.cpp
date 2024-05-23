@@ -47,45 +47,6 @@ public:
             }
         }
 
-        // Print the shortest distances
-        // cout << "Vertex\tDistance from Source\n";
-        // for (int i = 0; i < V; i++) {
-        //     cout << i << "\t" << dist[i] << "\n";
-        // }
-
         return dist;
     }
 };
-
-// int main() {
-//     // int V, E;
-//     // cout << "Enter the number of vertices and edges: ";
-//     // cin >> V >> E;
-
-//     // Graph g(V);
-
-//     // cout << "Enter the edges (source, destination, weight):\n";
-//     // for (int i = 0; i < E; i++) {
-//     //     int src, dest, weight;
-//     //     cin >> src >> dest >> weight;
-//     //     g.addEdge(src, dest, weight);
-//     // }
-
-//     // int source;
-//     // cout << "Enter the source vertex: ";
-//     // cin >> source;
-
-//     int V = 5, source = 0;
-//     Graph g(V);
-//     g.addEdge(0, 1, 2);
-//     g.addEdge(0, 3, 6);
-//     g.addEdge(1, 2, 3);
-//     g.addEdge(1, 3, 8);
-//     g.addEdge(1, 4, 5);
-//     g.addEdge(2, 4, 7);
-//     g.addEdge(3, 4, 9);
-
-//     g.dijkstra(source);
-
-//     return 0;
-// }
